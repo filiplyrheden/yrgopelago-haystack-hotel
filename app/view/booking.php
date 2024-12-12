@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form method="POST" action="/app/logic/booking-form.php">
+    <form method="POST" action="app/logic/booking-form.php">
 
         <label for="arrival_date">Arrival Date:</label>
         <input type="date" id="arrival_date" name="arrival_date" required><br>

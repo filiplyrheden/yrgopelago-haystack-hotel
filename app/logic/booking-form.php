@@ -11,15 +11,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $arrival_date = $_POST['arrival_date'];
     $departure_date = $_POST['departure_date'];
     $room = isset($_POST['room']) ? $_POST['room'] : [];
-    $features = isset($_POST['features']) ? $_POST['features'] : [];
+    $features = array_filter($_POST['features'], function ($feature) {
+        return isset($feature['name']);
+    });
 
     // Calculate the total cost
     //Converts arrival date into Unix timestamp. Subtracts timestamps to get total number of seconds between the arrival and departure dates. 
     //Divides result by 86400 (the number of seconds in a day) to convert the difference from seconds to days. 
-    $days = (strtotime($departure_date) - strtotime($arrival_date)) / 86400;
-    $room_cost = isset($room['cost']) ? $room['cost'] : 0;
+    $days = max(1, (strtotime($departure_date) - strtotime($arrival_date)) / 86400);
+    $room_cost = array_reduce($_POST['room'], function ($sum, $room) {
+        if (isset($room['name'])) {
+            return $sum + (int)$room['cost'];
+        }
+        return $sum;
+    }, 0);
     $feature_cost = array_reduce($features, function ($sum, $feature) {
-        return $sum + (isset($feature['cost']) ? $feature['cost'] : 0);
+        if (isset($feature['name'])) {
+            return $sum + (int)$feature['cost'];
+        }
+        return $sum;
     }, 0);
     $total_cost = $room_cost * $days + $feature_cost;
 
@@ -31,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "departure_date" => $departure_date,
         "total_cost" => $total_cost,
         "stars" => $stars,
-        "features" => $features,
+        "features" => array_values($features),
         "additional_info" => [
             "greeting" => "Thank you for choosing $hotel",
             "imageUrl" => ""
