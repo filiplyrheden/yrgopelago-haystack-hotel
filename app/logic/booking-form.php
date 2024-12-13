@@ -50,9 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ];
 
     // Output JSON
-    // header('Content-Type: application/json');
-    // $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
-
-    // Redirect to index.php
-    header('Location: /index.php');
+    header('Content-Type: application/json');
+    $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
 }
