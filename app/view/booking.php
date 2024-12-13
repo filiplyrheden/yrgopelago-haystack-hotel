@@ -11,10 +11,10 @@
     <form method="POST" action="app/logic/booking-form.php">
 
         <label for="arrival_date">Arrival Date:</label>
-        <input type="date" id="arrival_date" name="arrival_date" required><br>
+        <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br>
 
         <label for="departure_date">Departure Date:</label>
-        <input type="date" id="departure_date" name="departure_date" required><br>
+        <input type="date" id="departure_date" name="departure_date" required min="2025-01-01" max="2025-01-31"><br>
 
         <fieldset>
             <legend>Rooms:</legend>
