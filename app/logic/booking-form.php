@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $features = array_filter($_POST['features'], function ($feature) {
         return isset($feature['name']);
     });
+    $transferCode = $_POST['transfer_code'];
 
     // Calculate the total cost
     //Converts arrival date into Unix timestamp. Subtracts timestamps to get total number of seconds between the arrival and departure dates. 
@@ -49,7 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ];
 
     // Output JSON
-    header('Content-Type: application/json');
-    echo json_encode($response, JSON_PRETTY_PRINT);
-    exit;
+    // header('Content-Type: application/json');
+    // $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
+
+    // Redirect to index.php
+    header('Location: /index.php');
 }

@@ -44,6 +44,14 @@
             </label><br>
         </fieldset>
 
+        <fieldset>
+            <label>
+                Transfer code:
+                <input type="text" name="transfer_code">
+            </label><br>
+        </fieldset>
+
+
         <button type="submit">Book Now</button>
     </form>
 </body>
