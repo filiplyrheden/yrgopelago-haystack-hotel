@@ -50,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ];
 
     // Output JSON
-    header('Content-Type: application/json');
-    $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
+    // header('Content-Type: application/json');
+    // $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
 }
+
+var_dump($_POST);
