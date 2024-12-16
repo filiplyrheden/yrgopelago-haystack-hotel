@@ -8,49 +8,29 @@
 </head>
 
 <body>
-    <form method="POST" action="app/logic/database.php">
-
+    <h1>Hotel Booking</h1>
+    <form method="POST" action="/app/logic/database.php">
         <label for="arrival_date">Arrival Date:</label>
-        <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br>
+        <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br><br>
 
         <label for="departure_date">Departure Date:</label>
-        <input type="date" id="departure_date" name="departure_date" required min="2025-01-01" max="2025-01-31"><br>
+        <input type="date" id="departure_date" name="departure_date" required min="2025-01-01" max="2025-01-31"><br><br>
 
-        <fieldset>
-            <legend>Rooms:</legend>
-            <label>
-                <input type="checkbox" name="room[0][name]" value="Budget">
-                Budget (Cost: 1)
-                <input type="hidden" name="room[0][cost]" value="1">
-            </label><br>
-            <label>
-                <input type="checkbox" name="room[1][name]" value="Standard">
-                Standard (Cost: 2)
-                <input type="hidden" name="room[1][cost]" value="2">
-            </label><br>
-            <label>
-                <input type="checkbox" name="room[2][name]" value="Luxury">
-                Luxury (Cost: 4)
-                <input type="hidden" name="room[2][cost]" value="4">
-            </label><br>
-        </fieldset>
+        <label for="room_type">Room Type:</label>
+        <select id="room_type" name="room_type" required>
+            <option value="Budget">Budget (Cost: 1)</option>
+            <option value="Standard">Standard (Cost: 2)</option>
+            <option value="Luxury">Luxury (Cost: 4)</option>
+        </select><br><br>
 
-        <fieldset>
-            <legend>Features:</legend>
-            <label>
-                <input type="checkbox" name="feature[0][name]" value="sauna">
-                Sauna (Cost: 2)
-                <input type="hidden" name="feature[0][cost]" value="2">
-            </label><br>
-        </fieldset>
+        <label>Features:</label><br>
+        <input type="checkbox" id="sauna" name="features[]" value="Sauna">
+        <label for="sauna">Sauna (Cost: 2)</label><br>
+        <input type="checkbox" id="minibar" name="features[]" value="Minibar">
+        <label for="minibar">Minibar (Cost: 1)</label><br><br>
 
-        <fieldset>
-            <label>
-                Transfer code:
-                <input type="text" name="transfer_code">
-            </label><br>
-        </fieldset>
-
+        <label for="transfer_code">Transfer Code:</label>
+        <input type="text" id="transfer_code" name="transfer_code" required><br><br>
 
         <button type="submit">Book Now</button>
     </form>
