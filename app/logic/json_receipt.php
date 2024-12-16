@@ -54,4 +54,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $jsonResponse = json_encode($response, JSON_PRETTY_PRINT);
 }
 
-var_dump($_POST);
+// var_dump($_POST);

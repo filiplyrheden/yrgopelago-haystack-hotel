@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form method="POST" action="app/logic/booking-form.php">
+    <form method="POST" action="app/logic/database.php">
 
         <label for="arrival_date">Arrival Date:</label>
         <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br>
@@ -19,28 +19,28 @@
         <fieldset>
             <legend>Rooms:</legend>
             <label>
-                <input type="checkbox" name="room[0][name]" value="Budget">
+                <input type="checkbox" name="room" value="Budget">
                 Budget (Cost: 1)
-                <input type="hidden" name="room[0][cost]" value="1">
+                <input type="hidden" name="cost" value="1">
             </label><br>
             <label>
-                <input type="checkbox" name="room[1][name]" value="Standard">
+                <input type="checkbox" name="room" value="Standard">
                 Standard (Cost: 2)
-                <input type="hidden" name="room[1][cost]" value="2">
+                <input type="hidden" name="cost" value="2">
             </label><br>
             <label>
-                <input type="checkbox" name="room[2][name]" value="Luxury">
+                <input type="checkbox" name="room" value="Luxury">
                 Luxury (Cost: 4)
-                <input type="hidden" name="room[2][cost]" value="4">
+                <input type="hidden" name="cost" value="4">
             </label><br>
         </fieldset>
 
         <fieldset>
             <legend>Features:</legend>
             <label>
-                <input type="checkbox" name="features[0][name]" value="sauna">
+                <input type="checkbox" name="feature" value="sauna">
                 Sauna (Cost: 2)
-                <input type="hidden" name="features[0][cost]" value="2">
+                <input type="hidden" name="cost" value="2">
             </label><br>
         </fieldset>
 
