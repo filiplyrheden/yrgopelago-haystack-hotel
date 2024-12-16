@@ -41,8 +41,8 @@ if (isset($_POST['room'])) {
 }
 
 // Handle feature costs
-if (isset($_POST['features'])) {
-    foreach ($_POST['features'] as $feature) {
+if (isset($_POST['feature'])) {
+    foreach ($_POST['feature'] as $feature) {
         if (!empty($feature['cost'])) {
             $totalCost += (int)$feature['cost'];
         }
