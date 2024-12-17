@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/fuctions.php';
+
 $database = 'sqlite:' . __DIR__ . '/../database/haystack.db';
 
 // Create SQLite database and table
@@ -21,7 +23,6 @@ try {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
-
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -48,18 +49,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $totalCost = ($roomCost * $days) + $featureCost;
 
-        try {
-            $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) VALUES (:arrival_date, :departure_date, :room_type, :transfer_code, :total_cost)");
-            $stmt->bindParam(':arrival_date', $arrivalDate);
-            $stmt->bindParam(':departure_date', $departureDate);
-            $stmt->bindParam(':room_type', $roomType);
-            $stmt->bindParam(':transfer_code', $transferCode);
-            $stmt->bindParam(':total_cost', $totalCost);
-            $stmt->execute();
+        // Correct function call
+        if ((isRoomAvailable($roomType, $arrivalDate, $departureDate, $db))) {
+            try {
+                $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) 
+                                      VALUES (:arrival_date, :departure_date, :room_type, :transfer_code, :total_cost)");
+                $stmt->bindParam(':arrival_date', $arrivalDate);
+                $stmt->bindParam(':departure_date', $departureDate);
+                $stmt->bindParam(':room_type', $roomType);
+                $stmt->bindParam(':transfer_code', $transferCode);
+                $stmt->bindParam(':total_cost', $totalCost);
+                $stmt->execute();
 
-            echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
-        } catch (PDOException $e) {
-            echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
+                echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
+            } catch (PDOException $e) {
+                echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
+            }
+        } else {
+            echo "<p>Room not available.</p>";
         }
     } else {
         echo "<p>Please fill in all fields.</p>";
