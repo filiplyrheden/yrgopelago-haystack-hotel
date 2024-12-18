@@ -81,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 // Deposit failed, display the error message
-                $errorMessage = is_array($depositResponse) ? ($depositResponse['message'] ?? 'Unknown error') : $depositResponse;
                 echo "<p>Deposit failed: $errorMessage</p>";
             }
         } else {
