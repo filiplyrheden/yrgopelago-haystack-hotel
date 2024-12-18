@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/fuctions.php';
+require __DIR__ . '/functions.php';
 require __DIR__ . '/transfercode_validation.php';
 
 $database = 'sqlite:' . __DIR__ . '/../database/haystack.db';
