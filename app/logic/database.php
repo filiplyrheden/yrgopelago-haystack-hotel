@@ -80,8 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<p>Room not available.</p>";
                 }
             } else {
-                // Deposit failed, display the error message
-                echo "<p>Deposit failed: $errorMessage</p>";
+                $errorMessage = $depositResponse['message'] ?? 'Unknown error';
             }
         } else {
             echo "<p>Transfer code not valid.</p>";
