@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/functions.php';
 require __DIR__ . '/transfercode_validation.php';
+require __DIR__ . '/transfercode_deposit.php';
+require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/dotenv.php';
 
 $database = 'sqlite:' . __DIR__ . '/../database/haystack.db';
 
@@ -50,24 +53,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $totalCost = ($roomCost * $days) + $featureCost;
 
+        // Check if the transfer code is valid
         if (isTransferCodeValid($transferCode, $totalCost)) {
-            if (isRoomAvailable($roomType, $arrivalDate, $departureDate, $db)) {
-                try {
-                    $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) 
-                                      VALUES (:arrival_date, :departure_date, :room_type, :transfer_code, :total_cost)");
-                    $stmt->bindParam(':arrival_date', $arrivalDate);
-                    $stmt->bindParam(':departure_date', $departureDate);
-                    $stmt->bindParam(':room_type', $roomType);
-                    $stmt->bindParam(':transfer_code', $transferCode);
-                    $stmt->bindParam(':total_cost', $totalCost);
-                    $stmt->execute();
+            // Call depositFunds function to deposit funds to the central bank
+            $depositResponse = depositFunds($transferCode, $days);
 
-                    echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
-                } catch (PDOException $e) {
-                    echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
+            // Check the response from depositFunds
+            if (is_array($depositResponse) && isset($depositResponse['status']) && $depositResponse['status'] === 'success') {
+                // Deposit was successful, proceed with booking
+                if (isRoomAvailable($roomType, $arrivalDate, $departureDate, $db)) {
+                    try {
+                        $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) 
+                                  VALUES (:arrival_date, :departure_date, :room_type, :transfer_code, :total_cost)");
+                        $stmt->bindParam(':arrival_date', $arrivalDate);
+                        $stmt->bindParam(':departure_date', $departureDate);
+                        $stmt->bindParam(':room_type', $roomType);
+                        $stmt->bindParam(':transfer_code', $transferCode);
+                        $stmt->bindParam(':total_cost', $totalCost);
+                        $stmt->execute();
+
+                        echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
+                    } catch (PDOException $e) {
+                        echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
+                    }
+                } else {
+                    echo "<p>Room not available.</p>";
                 }
             } else {
-                echo "<p>Room not available.</p>";
+                // Deposit failed, display the error message
+                $errorMessage = is_array($depositResponse) ? ($depositResponse['message'] ?? 'Unknown error') : $depositResponse;
+                echo "<p>Deposit failed: $errorMessage</p>";
             }
         } else {
             echo "<p>Transfer code not valid.</p>";

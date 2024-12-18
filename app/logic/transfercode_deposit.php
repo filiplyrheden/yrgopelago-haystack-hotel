@@ -8,11 +8,10 @@ use GuzzleHttp\Exception\RequestException;
 
 function depositFunds(string $transferCode, int $days)
 {
-    $client = new Client(); // Create a Guzzle client
-    $url = 'https://www.yrgopelago.se/centralbank/deposit'; // API endpoint
+    $client = new Client();
+    $url = 'https://www.yrgopelago.se/centralbank/deposit';
 
     try {
-        // Send a POST request
         $response = $client->post($url, [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded',
@@ -24,17 +23,16 @@ function depositFunds(string $transferCode, int $days)
             ],
         ]);
 
-        // Decode the JSON response
-        $responseData = json_decode($response->getBody(), true);
-
-        return $responseData;
+        // Decode JSON response
+        return json_decode($response->getBody(), true);
     } catch (RequestException $e) {
         // Handle request errors
-        if ($e->hasResponse()) {
-            return $e->getResponse()->getBody()->getContents();
-        } else {
-            return $e->getMessage();
-        }
+        $errorMessage = $e->hasResponse()
+            ? $e->getResponse()->getBody()->getContents()
+            : $e->getMessage();
+
+        // Return an error response
+        return ['status' => 'error', 'message' => $errorMessage];
     }
 }
 
