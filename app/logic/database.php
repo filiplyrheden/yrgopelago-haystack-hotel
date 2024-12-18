@@ -55,12 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check if the transfer code is valid
         if (isTransferCodeValid($transferCode, $totalCost)) {
-            // Call depositFunds function to deposit funds to the central bank
-            // $depositResponse = depositFunds($transferCode, $days);
 
-            // Check the response from depositFunds
-            // if (is_array($depositResponse) && isset($depositResponse['status']) && $depositResponse['status'] === 'success') {
-            // Deposit was successful, proceed with booking
             if (isRoomAvailable($roomType, $arrivalDate, $departureDate, $db)) {
                 try {
                     $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) 
@@ -72,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt->bindParam(':total_cost', $totalCost);
                     $stmt->execute();
 
+                    depositFunds($transferCode, $hotelManager, $days);
+
                     echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
                 } catch (PDOException $e) {
                     echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
@@ -79,9 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo "<p>Room not available.</p>";
             }
-            // } else {
-            //     $errorMessage = $depositResponse['message'] ?? 'Unknown error';
-            // }
         } else {
             echo "<p>Transfer code not valid.</p>";
         }

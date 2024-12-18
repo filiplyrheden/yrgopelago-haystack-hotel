@@ -3,47 +3,20 @@
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/dotenv.php';
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-
-function depositFunds(string $transferCode, int $days)
+function depositFunds(string $transferCode, string $hotelManager, int $days): array
 {
-    $client = new Client();
-    $url = 'https://www.yrgopelago.se/centralbank/deposit';
-
     try {
-        $response = $client->post($url, [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded',
-            ],
-            'form_params' => [
-                'user' => $_ENV['user'],
-                'transferCode' => $transferCode,
-                'numberOfDays' => $days,
-            ],
-        ]);
-
-        // Decode JSON response
-        return json_decode($response->getBody(), true);
-    } catch (RequestException $e) {
-        // Handle request errors
-        $errorMessage = $e->hasResponse()
-            ? $e->getResponse()->getBody()->getContents()
-            : $e->getMessage();
-
-        // Return an error response
-        return ['status' => 'error', 'message' => $errorMessage];
+        // Deposit the transfer code
+        $depositClient = new GuzzleHttp\Client();
+        $depositResponse = $depositClient->request('POST', 'https://www.yrgopelag.se/centralbank/deposit', ['form_params' => [
+            'user' => $hotelManager,
+            'transferCode' => $transferCode,
+            'numberOfDays' => $days
+        ]]);
+        $bankResponseDeposit = json_decode($depositResponse->getBody()->getContents(), true);
+        file_put_contents('deposit_response.json', json_encode($bankResponseDeposit), FILE_APPEND); //save the response as json in a separate file for debugging reasons
+        return $bankResponseDeposit;
+    } catch (\Exception $e) {
+        return ['error' => $e->getMessage()];
     }
 }
-
-// Example usage
-// $transferCode = '271d59a7-4ca5-4799-87cd-8a48f5eaef31';
-// $days = 1;
-// $result = depositFunds($transferCode, $days);
-
-// if (is_array($result)) {
-//     echo "Transaction successful:\n";
-//     print_r($result);
-// } else {
-//     echo "Transaction failed: $result\n";
-// }
