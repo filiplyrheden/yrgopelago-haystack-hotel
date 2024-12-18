@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt->bindParam(':total_cost', $totalCost);
                     $stmt->execute();
 
+                    //Deposits funds from transfercode into hotel managers account.
                     depositFunds($transferCode, $hotelManager);
 
                     echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
