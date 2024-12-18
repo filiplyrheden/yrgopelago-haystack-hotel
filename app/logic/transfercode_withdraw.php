@@ -17,7 +17,7 @@ try {
         ],
         'form_params' => [
             'user' => 'Rune',
-            'api_key' => '0ae50412-18b8-4bd0-8818-8f0932c280b7',
+            'api_key' => '',
             'amount' => 10,
         ],
     ]);
