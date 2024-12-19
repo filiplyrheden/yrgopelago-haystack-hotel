@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if the date is booked
                 if (bookedDates.includes(day)) {
                     dateDiv.classList.add('booked');
+                } else {
+                    dateDiv.classList.add('available');
                 }
 
                 calendar.appendChild(dateDiv);
