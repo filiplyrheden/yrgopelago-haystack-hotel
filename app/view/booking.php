@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking</title>
+    <link rel="stylesheet" href="/app//view/style.css">
 </head>
 
 <body>
@@ -34,4 +35,11 @@
 
         <button type="submit">Book Now</button>
     </form>
+
+    <h2>Available Dates in January</h2>
+    <div class="calendar" id="calendar"></div>
+
+    <script src="/app/view/script.js"></script>
 </body>
+
+</html>
