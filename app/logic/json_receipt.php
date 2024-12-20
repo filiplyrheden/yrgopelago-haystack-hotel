@@ -24,7 +24,8 @@ function getFeatureCost($features)
 {
     $costMap = [
         "Sauna" => 2,
-        "Minibar" => 1
+        "Minibar" => 1,
+        "Yatzy" => 1
     ];
     $total = 0;
     foreach ($features as $feature) {
@@ -48,6 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $room_cost = getRoomCost($room_type) * $days;
     $feature_cost = getFeatureCost($features);
     $total_cost = $room_cost + $feature_cost;
+
+    if ($days >= 3) {
+        $total_cost *= 0.7;
+    }
 
     // Construct JSON response
     $response = [
