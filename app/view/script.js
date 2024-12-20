@@ -64,16 +64,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     arrivalDateInput.addEventListener('change', calculateDays);
     departureDateInput.addEventListener('change', calculateDays);
     roomType.addEventListener('change', calculateDays); // Recalculate cost if room type changes
+
+        // Get features cost
+        const features = document.querySelectorAll('input[name="features[]"]:checked');
+        features.forEach(feature => {
+            totalCost += parseInt(feature.getAttribute('data-cost'));
+        });
+    
+        // Update total cost display
+        document.getElementById('total_cost').innerText = totalCost;
 });
 
-    // Get features cost
-    const features = document.querySelectorAll('input[name="features[]"]:checked');
-    features.forEach(feature => {
-        totalCost += parseInt(feature.getAttribute('data-cost'));
-    });
-
-    // Update total cost display
-    document.getElementById('total_cost').innerText = totalCost;
 }
 
 // Add event listeners
@@ -82,5 +83,5 @@ document.querySelectorAll('input[name="features[]"]').forEach(feature => {
     feature.addEventListener('change', calculateTotalCost);
 });
 
-// Initial calculation
+// Use the function to calculate the total cost
 calculateTotalCost();

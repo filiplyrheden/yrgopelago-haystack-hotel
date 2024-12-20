@@ -25,9 +25,9 @@
         </select><br><br>
 
         <label>Features:</label><br>
-        <input type="checkbox" id="sauna" name="features[]" value="Sauna">
+        <input type="checkbox" id="sauna" name="features[]" value="Sauna" data-cost="2">
         <label for="sauna">Sauna (Cost: 2)</label><br>
-        <input type="checkbox" id="minibar" name="features[]" value="Minibar">
+        <input type="checkbox" id="minibar" name="features[]" value="Minibar" data-cost="1">
         <label for="minibar">Minibar (Cost: 1)</label><br><br>
 
         <label for="transfer_code">Transfer Code:</label>
