@@ -19,9 +19,9 @@
 
         <label for="room_type">Room Type:</label>
         <select id="room_type" name="room_type" required>
-            <option value="Budget">Budget (Cost: 1)</option>
-            <option value="Standard">Standard (Cost: 2)</option>
-            <option value="Luxury">Luxury (Cost: 4)</option>
+            <option value="Budget" data-cost="1">Budget (Cost: 1)</option>
+            <option value="Standard" data-cost="2">Standard (Cost: 2)</option>
+            <option value="Luxury" data-cost="4">Luxury (Cost: 4)</option>
         </select><br><br>
 
         <label>Features:</label><br>
@@ -32,6 +32,8 @@
 
         <label for="transfer_code">Transfer Code:</label>
         <input type="text" id="transfer_code" name="transfer_code" required><br><br>
+
+        <div>Total Cost: <span id="total_cost">0</span></div><br>
 
         <button type="submit">Book Now</button>
     </form>

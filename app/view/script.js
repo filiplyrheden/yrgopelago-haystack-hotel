@@ -33,3 +33,29 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching booked dates:', error));
 });
+
+function calculateTotalCost() {
+    let totalCost = 0;
+
+    // Get room type cost
+    const roomType = document.getElementById('room_type');
+    totalCost += parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
+
+    // Get features cost
+    const features = document.querySelectorAll('input[name="features[]"]:checked');
+    features.forEach(feature => {
+        totalCost += parseInt(feature.getAttribute('data-cost'));
+    });
+
+    // Update total cost display
+    document.getElementById('total_cost').innerText = totalCost;
+}
+
+// Add event listeners
+document.getElementById('room_type').addEventListener('change', calculateTotalCost);
+document.querySelectorAll('input[name="features[]"]').forEach(feature => {
+    feature.addEventListener('change', calculateTotalCost);
+});
+
+// Initial calculation
+calculateTotalCost();
