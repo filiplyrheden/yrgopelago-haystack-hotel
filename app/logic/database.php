@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $features = $_POST['features'] ?? [];
 
     $roomCosts = ['Budget' => 1, 'Standard' => 2, 'Luxury' => 4];
-    $featureCosts = ['Sauna' => 2, 'Minibar' => 1];
+    $featureCosts = ['Sauna' => 2, 'Minibar' => 1, 'Yatzy' => 1];
 
     if ($arrivalDate && $departureDate && $roomType && $transferCode) {
         // Calculate total cost
