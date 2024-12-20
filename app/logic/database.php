@@ -7,6 +7,7 @@ require __DIR__ . '/transfercode_validation.php';
 require __DIR__ . '/transfercode_deposit.php';
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/dotenv.php';
+require __DIR__ . '/json_receipt.php';
 
 $database = 'sqlite:' . __DIR__ . '/../database/haystack.db';
 
@@ -71,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     depositFunds($transferCode, $hotelManager);
 
                     echo "<p>Booking successfully saved! Total cost: $totalCost</p>";
+                    echo "<p>Thank you for choosing $hotel. Here's your receipt:</p>";
+                    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT) . '</pre>';
                 } catch (PDOException $e) {
                     echo "<p>Error saving booking: " . $e->getMessage() . "</p>";
                 }
