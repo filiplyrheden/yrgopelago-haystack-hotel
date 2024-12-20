@@ -33,7 +33,7 @@
         <label for="transfer_code">Transfer Code:</label>
         <input type="text" id="transfer_code" name="transfer_code" required><br><br>
 
-        <div>Total Cost: <span id="total_cost">0</span></div><br>
+        <div><span>Total cost: </span><span id="total_cost"></span></div><br>
 
         <button type="submit">Book Now</button>
     </form>

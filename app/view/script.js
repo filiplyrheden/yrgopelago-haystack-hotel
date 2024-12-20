@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function calculateTotalCost() {
     let totalCost = 0;
 
-    // Get room type cost
 // Get room type cost
 document.addEventListener('DOMContentLoaded', (event) => {
     const arrivalDateInput = document.getElementById('arrival_date');
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const totalCost = daysDifference * roomCost;
 
             if (totalCostElement) {
-                totalCostElement.textContent = `Total Cost: ${totalCost}`;
+                totalCostElement.textContent = `${totalCost}`;
             }
         }
     }
