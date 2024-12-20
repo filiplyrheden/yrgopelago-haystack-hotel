@@ -35,53 +35,52 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function calculateTotalCost() {
-    let totalCost = 0;
-
-// Get room type cost
-document.addEventListener('DOMContentLoaded', (event) => {
-    const arrivalDateInput = document.getElementById('arrival_date');
-    const departureDateInput = document.getElementById('departure_date');
-    const roomType = document.getElementById('room_type');
-    const totalCostElement = document.getElementById('total_cost'); 
-
-    function calculateDays() {
-        const arrivalDate = new Date(arrivalDateInput.value);
-        const departureDate = new Date(departureDateInput.value);
-
-        if (arrivalDate && departureDate) {
-            const timeDifference = departureDate - arrivalDate;
-            const daysDifference = timeDifference / (1000 * 3600 * 24);
-
-            const roomCost = parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
-            const totalCost = daysDifference * roomCost;
-
-            if (totalCostElement) {
-                totalCostElement.textContent = `${totalCost}`;
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const arrivalDateInput = document.getElementById('arrival_date');
+        const departureDateInput = document.getElementById('departure_date');
+        const roomType = document.getElementById('room_type');
+        const totalCostElement = document.getElementById('total_cost');
+        
+        function calculateDays() {
+            const arrivalDate = new Date(arrivalDateInput.value);
+            const departureDate = new Date(departureDateInput.value);
+            
+            if (arrivalDate && departureDate) {
+                const timeDifference = departureDate - arrivalDate;
+                const daysDifference = timeDifference / (1000 * 3600 * 24);
+                
+                // Get room cost
+                const roomCost = parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
+                let totalCost = daysDifference * roomCost;
+                
+                // Add feature costs
+                const features = document.querySelectorAll('input[name="features[]"]:checked');
+                features.forEach(feature => {
+                    totalCost += parseInt(feature.getAttribute('data-cost'));
+                });
+                
+                // Update display
+                if (totalCostElement) {
+                    totalCostElement.textContent = totalCost;
+                }
             }
         }
-    }
-
-    arrivalDateInput.addEventListener('change', calculateDays);
-    departureDateInput.addEventListener('change', calculateDays);
-    roomType.addEventListener('change', calculateDays); // Recalculate cost if room type changes
-
-        // Get features cost
-        const features = document.querySelectorAll('input[name="features[]"]:checked');
+        
+        // Add event listeners
+        arrivalDateInput.addEventListener('change', calculateDays);
+        departureDateInput.addEventListener('change', calculateDays);
+        roomType.addEventListener('change', calculateDays);
+        
+        // Add event listeners for features
+        const features = document.querySelectorAll('input[name="features[]"]');
         features.forEach(feature => {
-            totalCost += parseInt(feature.getAttribute('data-cost'));
+            feature.addEventListener('change', calculateDays);
         });
-    
-        // Update total cost display
-        document.getElementById('total_cost').innerText = totalCost;
-});
-
+        
+        // Initial calculation
+        calculateDays();
+    });
 }
 
-// Add event listeners
-document.getElementById('room_type').addEventListener('change', calculateTotalCost);
-document.querySelectorAll('input[name="features[]"]').forEach(feature => {
-    feature.addEventListener('change', calculateTotalCost);
-});
-
-// Use the function to calculate the total cost
+// Initialize the calculator
 calculateTotalCost();
