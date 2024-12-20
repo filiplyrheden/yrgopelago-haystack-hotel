@@ -54,6 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $totalCost = ($roomCost * $days) + $featureCost;
 
+        // Apply 30% discount for bookings of three days or more
+        if ($days >= 3) {
+            $totalCost *= 0.7;
+        }
+
         // Check if the transfer code is valid
         if (isTransferCodeValid($transferCode, $totalCost)) {
 
