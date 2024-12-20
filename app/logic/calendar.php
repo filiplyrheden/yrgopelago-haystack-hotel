@@ -7,10 +7,14 @@ $result = $db->query("SELECT arrival_date, departure_date FROM bookings WHERE ar
 
 $bookedDates = [];
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $arrivalDay = (int)date('j', strtotime($row['arrival_date']));
-    $departureDay = (int)date('j', strtotime($row['departure_date']));
-    $bookedDates[] = $arrivalDay;
-    $bookedDates[] = $departureDay;
+    $arrivalDate = new DateTime($row['arrival_date']);
+    $departureDate = new DateTime($row['departure_date']);
+    $interval = new DateInterval('P1D');
+    $dateRange = new DatePeriod($arrivalDate, $interval, $departureDate->add($interval));
+
+    foreach ($dateRange as $date) {
+        $bookedDates[] = (int)$date->format('j');
+    }
 }
 
 // Remove duplicate dates
