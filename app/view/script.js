@@ -38,8 +38,34 @@ function calculateTotalCost() {
     let totalCost = 0;
 
     // Get room type cost
+// Get room type cost
+document.addEventListener('DOMContentLoaded', (event) => {
+    const arrivalDateInput = document.getElementById('arrival_date');
+    const departureDateInput = document.getElementById('departure_date');
     const roomType = document.getElementById('room_type');
-    totalCost += parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
+    const totalCostElement = document.getElementById('total_cost'); 
+
+    function calculateDays() {
+        const arrivalDate = new Date(arrivalDateInput.value);
+        const departureDate = new Date(departureDateInput.value);
+
+        if (arrivalDate && departureDate) {
+            const timeDifference = departureDate - arrivalDate;
+            const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+            const roomCost = parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
+            const totalCost = daysDifference * roomCost;
+
+            if (totalCostElement) {
+                totalCostElement.textContent = `Total Cost: ${totalCost}`;
+            }
+        }
+    }
+
+    arrivalDateInput.addEventListener('change', calculateDays);
+    departureDateInput.addEventListener('change', calculateDays);
+    roomType.addEventListener('change', calculateDays); // Recalculate cost if room type changes
+});
 
     // Get features cost
     const features = document.querySelectorAll('input[name="features[]"]:checked');
