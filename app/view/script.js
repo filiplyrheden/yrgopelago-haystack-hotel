@@ -58,6 +58,12 @@ function calculateTotalCost() {
                 features.forEach(feature => {
                     totalCost += parseInt(feature.getAttribute('data-cost'));
                 });
+
+
+                // Apply discount for three or more days
+                if (daysDifference >= 3) {
+                    totalCost *= 0.7; // 30% discount
+                }
                 
                 // Update display
                 if (totalCostElement) {
