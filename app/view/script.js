@@ -40,6 +40,7 @@ function calculateTotalCost() {
         const departureDateInput = document.getElementById('departure_date');
         const roomType = document.getElementById('room_type');
         const totalCostElement = document.getElementById('total_cost');
+        const discountText = document.getElementById('discount_text');
         
         function calculateDays() {
             const arrivalDate = new Date(arrivalDateInput.value);
@@ -59,10 +60,10 @@ function calculateTotalCost() {
                     totalCost += parseInt(feature.getAttribute('data-cost'));
                 });
 
-
                 // Apply discount for three or more days
                 if (daysDifference >= 3) {
                     totalCost *= 0.7; // 30% discount
+                    discountText.textContent = "Enjoy 30% discount!";
                 }
                 
                 // Update display
