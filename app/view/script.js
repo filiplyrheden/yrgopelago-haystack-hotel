@@ -61,7 +61,7 @@ function calculateTotalCost() {
                 
                 // Update display
                 if (totalCostElement) {
-                    totalCostElement.textContent = totalCost;
+                    totalCostElement.textContent = isNaN(totalCost) ? '' : totalCost;
                 }
             }
         }
