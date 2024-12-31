@@ -30,7 +30,7 @@
         </div>
     </section>
 
-    <h2 id="rooms">Room Types</h2>
+    <h2 id="rooms-heading">Room Types</h2>
     <section class="room-cards">
         <div class="room-card">
             <img src="/assets/budget-bale.png" alt="Budget Room">

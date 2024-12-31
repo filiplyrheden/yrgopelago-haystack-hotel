@@ -90,6 +90,10 @@ nav a:hover {
 }
 
 /* Room cards section */
+#rooms-heading {
+    margin-top: 30px;
+}
+
 .room-cards {
     max-width: 1200px;
     margin: 3rem auto;
