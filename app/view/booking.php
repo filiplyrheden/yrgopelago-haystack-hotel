@@ -9,7 +9,55 @@
 </head>
 
 <body>
-    <h1>Hotel Booking</h1>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">Haystack Hotel</a>
+            <nav>
+                <ul>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Haystack Hotel</h1>
+            <p>Experience rustic luxury in the heart of the countryside</p>
+        </div>
+    </section>
+
+    <section class="room-cards">
+        <div class="room-card">
+            <img src="path-to-budget-room-image.jpg" alt="Budget Room">
+            <div class="room-card-content">
+                <h3>Budget Room</h3>
+                <p>Cozy and comfortable, perfect for the budget-conscious traveler.</p>
+                <p>Cost: 1 credit per night</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img src="path-to-standard-room-image.jpg" alt="Standard Room">
+            <div class="room-card-content">
+                <h3>Standard Room</h3>
+                <p>Spacious accommodation with all essential amenities.</p>
+                <p>Cost: 2 credits per night</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img src="path-to-luxury-room-image.jpg" alt="Luxury Room">
+            <div class="room-card-content">
+                <h3>Luxury Room</h3>
+                <p>Premium accommodation with exclusive features and scenic views.</p>
+                <p>Cost: 4 credits per night</p>
+            </div>
+        </div>
+    </section>
+
+    <h2>Hotel Booking</h2>
     <form method="POST" action="/app/logic/database.php">
         <label for="arrival_date">Arrival Date:</label>
         <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br><br>
@@ -35,7 +83,7 @@
         <label for="transfer_code">Transfer Code:</label>
         <input type="text" id="transfer_code" name="transfer_code" required><br><br>
 
-        <div>
+        <div class="cost-display">
             <span>Total cost: </span><span id="total_cost"></span>
             <p id="discount_text"></p>
         </div>
