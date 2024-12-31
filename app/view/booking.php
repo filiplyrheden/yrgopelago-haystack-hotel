@@ -30,29 +30,27 @@
         </div>
     </section>
 
+    <h2 id="rooms">Room Types</h2>
     <section class="room-cards">
         <div class="room-card">
-            <img src="path-to-budget-room-image.jpg" alt="Budget Room">
+            <img src="/assets/budget-bale.png" alt="Budget Room">
             <div class="room-card-content">
-                <h3>Budget Room</h3>
-                <p>Cozy and comfortable, perfect for the budget-conscious traveler.</p>
-                <p>Cost: 1 credit per night</p>
+                <h3>Budget Bale</h3>
+                <p>Perfect for solo travelers. A simple haystack experience.</p>
             </div>
         </div>
         <div class="room-card">
-            <img src="path-to-standard-room-image.jpg" alt="Standard Room">
+            <img src="/assets/comfort-stack.png" alt="Standard Room">
             <div class="room-card-content">
-                <h3>Standard Room</h3>
-                <p>Spacious accommodation with all essential amenities.</p>
-                <p>Cost: 2 credits per night</p>
+                <h3>Comfort stack</h3>
+                <p>A cozy setup with soft blankets and rustic charm.</p>
             </div>
         </div>
         <div class="room-card">
-            <img src="path-to-luxury-room-image.jpg" alt="Luxury Room">
+            <img src="/assets/luxury-loft.png" alt="Luxury Room">
             <div class="room-card-content">
-                <h3>Luxury Room</h3>
-                <p>Premium accommodation with exclusive features and scenic views.</p>
-                <p>Cost: 4 credits per night</p>
+                <h3>Luxury Loft</h3>
+                <p>An elevated experience with premium bedding on a haystack.</p>
             </div>
         </div>
     </section>
