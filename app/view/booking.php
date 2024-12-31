@@ -70,15 +70,18 @@
             <option value="Luxury" data-cost="4">Luxury (Cost: 4)</option>
         </select><br><br>
 
-        <label>Features:</label><br>
-        <input type="checkbox" id="sauna" name="features[]" value="Sauna" data-cost="2">
-        <label for="sauna">Sauna (Cost: 2)</label><br>
-        <input type="checkbox" id="minibar" name="features[]" value="Minibar" data-cost="1">
-        <label for="minibar">Minibar (Cost: 1)</label><br>
-        <input type="checkbox" id="yatzy" name="features[]" value="Yatzy" data-cost="1">
-        <label for="yatzy">Yatzy (Cost: 1)</label><br><br>
+        <h3>Features:</h3>
 
-        <label for="transfer_code">Transfer Code:</label>
+        <div class="features">
+            <input type="checkbox" id="sauna" name="features[]" value="Sauna" data-cost="2">
+            <label for="sauna">Sauna (Cost: 2)</label><br>
+            <input type="checkbox" id="minibar" name="features[]" value="Minibar" data-cost="1">
+            <label for="minibar">Minibar (Cost: 1)</label><br>
+            <input type="checkbox" id="yatzy" name="features[]" value="Yatzy" data-cost="1">
+            <label for="yatzy">Yatzy (Cost: 1)</label><br><br>
+        </div>
+
+        <h4>Transfer code:</h4>
         <input type="text" id="transfer_code" name="transfer_code" required><br><br>
 
         <div class="cost-display">

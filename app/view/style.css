@@ -135,13 +135,6 @@ form {
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #2c1810;
-}
-
 input[type="date"],
 input[type="text"],
 select {
@@ -153,11 +146,7 @@ select {
     font-size: 1rem;
 }
 
-.features-group {
-    margin: 1.5rem 0;
-}
-
-.checkbox-group {
+.features {
     display: flex;
     align-items: center;
     gap: 0.5rem;
