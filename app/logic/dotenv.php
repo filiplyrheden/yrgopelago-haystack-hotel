@@ -10,3 +10,4 @@ $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 $hotelManager = $_ENV['user'];
+$apiKey = $_ENV['api_key'];
