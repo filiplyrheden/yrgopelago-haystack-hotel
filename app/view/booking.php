@@ -93,8 +93,12 @@
         <button type="submit">Book Now</button>
     </form>
 
-    <h2>Available Dates in January</h2>
-    <div class="calendar" id="calendar"></div>
+    <h2>Budget Rooms available:</h2>
+    <div class="calendar" id="budget-calendar"></div>
+    <h2>Standard Rooms available:</h2>
+    <div class="calendar" id="standard-calendar"></div>
+    <h2>Luxury Rooms available:</h2>
+    <div class="calendar" id="luxury-calendar"></div>
 
     <script src="/app/view/script.js"></script>
 </body>
