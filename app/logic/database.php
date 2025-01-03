@@ -21,9 +21,20 @@ try {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         arrival_date TEXT NOT NULL,
         departure_date TEXT NOT NULL,
-        room_type TEXT NOT NULL,
         transfer_code TEXT NOT NULL,
         total_cost REAL NOT NULL
+    )");
+
+    $db->exec("CREATE TABLE IF NOT EXISTS rooms (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        room_type TEXT NOT NULL,
+        room_cost REAL NOT NULL
+    )");
+
+    $db->exec("CREATE TABLE IF NOT EXISTS features (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        feature_name TEXT NOT NULL,
+        feature_cost REAL NOT NULL
     )");
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
@@ -64,14 +75,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isRoomAvailable($roomType, $arrivalDate, $departureDate, $db)) {
                 try {
-                    $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, room_type, transfer_code, total_cost) 
-                                  VALUES (:arrival_date, :departure_date, :room_type, :transfer_code, :total_cost)");
+                    $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, transfer_code, total_cost) 
+                                  VALUES (:arrival_date, :departure_date, :transfer_code, :total_cost)");
                     $stmt->bindParam(':arrival_date', $arrivalDate);
                     $stmt->bindParam(':departure_date', $departureDate);
-                    $stmt->bindParam(':room_type', $roomType);
                     $stmt->bindParam(':transfer_code', $transferCode);
                     $stmt->bindParam(':total_cost', $totalCost);
                     $stmt->execute();
+
+                    $stmt = $db->prepare("INSERT INTO rooms (room_type, room_cost) 
+                    VALUES (:room_type, :room_cost)");
+                    $stmt->bindParam(':room_type', $roomType);
+                    $stmt->bindParam(':room_cost', $roomCost);
+                    $stmt->execute();
+
+                    $stmt = $db->prepare("INSERT INTO features (feature_name, feature_cost)
+                    VALUES (:feature_name, :feature_cost)");
+                    foreach ($features as $feature) {
+                        $stmt->bindParam(':feature_name', $feature);
+                        $stmt->bindParam(':feature_cost', $featureCosts[$feature]);
+                        $stmt->execute();
+                    }
 
                     //Deposits funds from transfercode into hotel managers account.
                     depositFunds($transferCode, $hotelManager);
