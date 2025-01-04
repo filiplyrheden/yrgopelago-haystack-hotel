@@ -2,9 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const budgetCalendar = document.getElementById('budget-calendar');
     const standardCalendar = document.getElementById('standard-calendar');
     const luxuryCalendar = document.getElementById('luxury-calendar');
+    const basePath = window.location.pathname.includes('/haystack-hotel') 
+    ? '/haystack-hotel' 
+    : '';
 
         // Fetch booked dates from the server for budget room
-        fetch('/app/logic/budget_calendar.php')
+        fetch(`${basePath}/app/logic/budget_calendar.php`)
         .then(response => response.json())
         .then(bookedDates => {
             // Debugging: Log the booked dates and its type
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error('Error fetching booked dates:', error));
 
     // Fetch booked dates for standard room
-    fetch('/app/logic/standard_calendar.php')
+    fetch(`${basePath}/app/logic/standard_calendar.php`)
     .then(response => response.json())
     .then(bookedDates => {
         // Debugging: Log the booked dates and its type
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .catch(error => console.error('Error fetching booked dates:', error));
 
 // Fetch booked dates from the server for luxury room
-fetch('/app/logic/luxury_calendar.php')
+fetch(`${basePath}/app/logic/luxury_calendar.php`)
         .then(response => response.json())
         .then(bookedDates => {
             // Debugging: Log the booked dates and its type
