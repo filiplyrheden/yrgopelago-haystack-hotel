@@ -61,7 +61,7 @@ nav a:hover {
 /* Hero section */
 .hero {
     height: 60vh;
-    background-image: url('/assets/farm-hero.png');
+    background-image: url('../../assets/farm-hero.png');
     background-size: cover;
     background-position: center;
     display: flex;

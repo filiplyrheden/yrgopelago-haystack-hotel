@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking</title>
-    <link rel="stylesheet" href="/app//view/style.css">
+    <link rel="stylesheet" href="app/view/style.css">
 </head>
 
 <body>
@@ -33,21 +33,21 @@
     <h2 id="rooms-heading">Room Types</h2>
     <section class="room-cards">
         <div class="room-card">
-            <img src="/assets/budget-bale.png" alt="Budget Room">
+            <img src="assets/budget-bale.png" alt="Budget Room">
             <div class="room-card-content">
                 <h3>Budget Bale</h3>
                 <p>Perfect for solo travelers. A simple haystack experience.</p>
             </div>
         </div>
         <div class="room-card">
-            <img src="/assets/comfort-stack.png" alt="Standard Room">
+            <img src="assets/comfort-stack.png" alt="Standard Room">
             <div class="room-card-content">
                 <h3>Comfort stack</h3>
                 <p>A cozy setup with soft blankets and rustic charm.</p>
             </div>
         </div>
         <div class="room-card">
-            <img src="/assets/luxury-loft.png" alt="Luxury Room">
+            <img src="assets/luxury-loft.png" alt="Luxury Room">
             <div class="room-card-content">
                 <h3>Luxury Loft</h3>
                 <p>An elevated experience with premium bedding on a haystack.</p>
@@ -100,7 +100,7 @@
     <h2>Luxury Rooms available:</h2>
     <div class="calendar" id="luxury-calendar"></div>
 
-    <script src="/app/view/script.js"></script>
+    <script src="app/view/script.js"></script>
 </body>
 
 </html>
