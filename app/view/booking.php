@@ -63,10 +63,16 @@
 
     <section class="calendars">
         <div class="calendar" id="budget-calendar">
+            <p class="month-label">January 2025</p>
+            <!-- Calendar grid content -->
         </div>
         <div class="calendar" id="standard-calendar">
+            <p class="month-label">January 2025</p>
+            <!-- Calendar grid content -->
         </div>
         <div class="calendar" id="luxury-calendar">
+            <p class="month-label">January 2025</p>
+            <!-- Calendar grid content -->
         </div>
     </section>
 
