@@ -55,6 +55,16 @@
         </div>
     </section>
 
+    <section class="calendars">
+        <div class="calendar" id="budget-calendar">
+
+        </div>
+        <div class="calendar" id="standard-calendar">
+        </div>
+        <div class="calendar" id="luxury-calendar">
+        </div>
+    </section>
+
     <h2>Hotel Booking</h2>
     <form method="POST" action="<?php echo BASE_URL; ?>/app/logic/database.php">
         <label for="arrival_date">Arrival Date:</label>
@@ -92,13 +102,6 @@
 
         <button type="submit">Book Now</button>
     </form>
-
-    <h2>Budget Rooms available:</h2>
-    <div class="calendar" id="budget-calendar"></div>
-    <h2>Standard Rooms available:</h2>
-    <div class="calendar" id="standard-calendar"></div>
-    <h2>Luxury Rooms available:</h2>
-    <div class="calendar" id="luxury-calendar"></div>
 
     <script src="app/view/script.js"></script>
 </body>
