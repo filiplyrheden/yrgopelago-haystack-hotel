@@ -55,9 +55,14 @@
         </div>
     </section>
 
+    <div class="calendar-headings">
+        <h4 id="budget-heading">Budget Bale room availability:</h4>
+        <h4 id="standard-heading">Comfort Stack room availability:</h4>
+        <h4 id="luxury-heading">Luxury Loft room availability:</h4>
+    </div>
+
     <section class="calendars">
         <div class="calendar" id="budget-calendar">
-
         </div>
         <div class="calendar" id="standard-calendar">
         </div>
