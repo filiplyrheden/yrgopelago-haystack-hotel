@@ -209,6 +209,7 @@ button[type="submit"]:hover {
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+margin-bottom: -40px;
 }
 
 .calendars {
