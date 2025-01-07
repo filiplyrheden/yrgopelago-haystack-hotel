@@ -14,10 +14,7 @@
             <a href="#" class="logo">Haystack Hotel</a>
             <nav>
                 <ul>
-                    <li><a href="#rooms">Rooms</a></li>
-                    <li><a href="#booking">Booking</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href='app/view/admin.php'>Admin</a></li>
                 </ul>
             </nav>
         </div>
