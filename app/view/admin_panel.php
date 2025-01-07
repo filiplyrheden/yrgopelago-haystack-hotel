@@ -109,7 +109,7 @@ try {
                             id="price_<?= $type ?>"
                             name="price_<?= $type ?>"
                             value="<?= htmlspecialchars((string)$price) ?>"
-                            step="0.1"
+                            step="1"
                             min="0"
                             required>
                     </div>
@@ -125,7 +125,7 @@ try {
                             id="price_feature_<?= $feature ?>"
                             name="price_feature_<?= $feature ?>"
                             value="<?= htmlspecialchars((string)$price) ?>"
-                            step="0.1"
+                            step="1"
                             min="0"
                             required>
                     </div>
@@ -151,7 +151,7 @@ try {
                         value="<?= htmlspecialchars((string)$discountSettings['discount_percentage']) ?>"
                         min="0"
                         max="100"
-                        step="0.1"
+                        step="1"
                         required>
                 </div>
             </div>
