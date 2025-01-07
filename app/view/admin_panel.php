@@ -83,6 +83,19 @@ try {
     $featurePrices = ['Sauna' => 2, 'Minibar' => 1, 'Yatzy' => 1];
     $discountSettings = ['min_days' => 3, 'discount_percentage' => 30];
 }
+
+// Create star rating setting table
+$stmt = $db->prepare("CREATE TABLE IF NOT EXISTS hotel_settings (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    star_rating INTEGER NOT NULL DEFAULT 5
+)");
+$stmt->execute();
+
+// Handle star rating update
+$starRating = $_POST['star_rating'] ?? 5;
+$stmt = $db->prepare("INSERT OR REPLACE INTO hotel_settings (id, star_rating) 
+                    VALUES (1, :star_rating)");
+$stmt->execute(['star_rating' => $starRating]);
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +165,20 @@ try {
                         min="0"
                         max="100"
                         step="1"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Hotel Rating</h2>
+                <div class="form-group">
+                    <label for="star_rating">Star Rating:</label>
+                    <input type="number"
+                        id="star_rating"
+                        name="star_rating"
+                        value="<?= $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")->fetchColumn() ?: 5 ?>"
+                        min="1"
+                        max="5"
                         required>
                 </div>
             </div>

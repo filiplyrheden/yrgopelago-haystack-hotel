@@ -3,7 +3,7 @@
 $database = 'sqlite:' . __DIR__ . '/../../app/database/haystack.db';
 $db = new PDO($database);
 
-// Fetch current prices
+// Fetch current prices and star rating
 $stmt = $db->prepare("SELECT * FROM room_prices");
 $stmt->execute();
 $roomPrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Budget' => 1, 'Standard' => 2, 'Luxury' => 4];
@@ -11,6 +11,9 @@ $roomPrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Budget' => 1, 'Standard'
 $stmt = $db->prepare("SELECT * FROM feature_prices");
 $stmt->execute();
 $featurePrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Sauna' => 2, 'Minibar' => 1, 'Yatzy' => 1];
+
+$starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")->fetchColumn() ?: 5;
+
 ?>
 
 <!DOCTYPE html>
@@ -30,19 +33,16 @@ $featurePrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Sauna' => 2, 'Minibar
         </div>
         <div class="star-container">
             <div class="stars">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
+                <?php for ($i = 0; $i < $starRating; $i++): ?>
+                    <span class="star">★</span>
+                <?php endfor; ?>
             </div>
             <div class="star-text">
-                <p>A five star hotel of the Lyrheden Group</p>
+                <p>A hotel of the Lyrheden Group</p>
             </div>
-        </div>
-        <div class="header-admin">
-            <a href='app/view/admin.php'>Hotel manager account</a>
-        </div>
+            <div class="header-admin">
+                <a href='app/view/admin.php'>Hotel manager account</a>
+            </div>
     </header>
 
     <section class="hero">
