@@ -1,3 +1,18 @@
+<?php
+
+$database = 'sqlite:' . __DIR__ . '/../../app/database/haystack.db';
+$db = new PDO($database);
+
+// Fetch current prices
+$stmt = $db->prepare("SELECT * FROM room_prices");
+$stmt->execute();
+$roomPrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Budget' => 1, 'Standard' => 2, 'Luxury' => 4];
+
+$stmt = $db->prepare("SELECT * FROM feature_prices");
+$stmt->execute();
+$featurePrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Sauna' => 2, 'Minibar' => 1, 'Yatzy' => 1];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,20 +98,19 @@
 
         <label for="room_type">Room Type:</label>
         <select id="room_type" name="room_type" required>
-            <option value="Budget" data-cost="1">Budget (Cost: 1)</option>
-            <option value="Standard" data-cost="2">Standard (Cost: 2)</option>
-            <option value="Luxury" data-cost="4">Luxury (Cost: 4)</option>
+            <option value="Budget" data-cost="<?= $roomPrices['Budget'] ?>">Budget (Cost: <?= $roomPrices['Budget'] ?>)</option>
+            <option value="Standard" data-cost="<?= $roomPrices['Standard'] ?>">Standard (Cost: <?= $roomPrices['Standard'] ?>)</option>
+            <option value="Luxury" data-cost="<?= $roomPrices['Luxury'] ?>">Luxury (Cost: <?= $roomPrices['Luxury'] ?>)</option>
         </select><br><br>
 
         <h3>Features:</h3>
-
         <div class="features">
-            <input type="checkbox" id="sauna" name="features[]" value="Sauna" data-cost="2">
-            <label for="sauna">Sauna (Cost: 2)</label><br>
-            <input type="checkbox" id="minibar" name="features[]" value="Minibar" data-cost="1">
-            <label for="minibar">Minibar (Cost: 1)</label><br>
-            <input type="checkbox" id="yatzy" name="features[]" value="Yatzy" data-cost="1">
-            <label for="yatzy">Yatzy (Cost: 1)</label><br><br>
+            <input type="checkbox" id="sauna" name="features[]" value="Sauna" data-cost="<?= $featurePrices['Sauna'] ?>">
+            <label for="sauna">Sauna (Cost: <?= $featurePrices['Sauna'] ?>)</label><br>
+            <input type="checkbox" id="minibar" name="features[]" value="Minibar" data-cost="<?= $featurePrices['Minibar'] ?>">
+            <label for="minibar">Minibar (Cost: <?= $featurePrices['Minibar'] ?>)</label><br>
+            <input type="checkbox" id="yatzy" name="features[]" value="Yatzy" data-cost="<?= $featurePrices['Yatzy'] ?>">
+            <label for="yatzy">Yatzy (Cost: <?= $featurePrices['Yatzy'] ?>)</label><br><br>
         </div>
 
         <h4>Transfer code:</h4>
