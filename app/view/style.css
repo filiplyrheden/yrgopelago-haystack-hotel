@@ -27,11 +27,9 @@ header {
 
 .header-content {
     max-width: 1200px;
-    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
 }
 
 .logo {
@@ -39,12 +37,11 @@ header {
     font-weight: bold;
     color: #f7f4eb;
     text-decoration: none;
+    margin-left: 25px;
 }
 
 nav ul {
-    display: flex;
     list-style: none;
-    gap: 2rem;
 }
 
 nav a {
@@ -57,6 +54,23 @@ nav a {
 nav a:hover {
     color: #e6c17b;
 }
+
+/* Stars */
+.star-container {
+    text-align: center;
+    margin-top: 1rem; 
+}
+
+.stars {
+    font-size: 24px; 
+    line-height: 1;  
+}
+
+.star-text {
+margin: 20px;
+font-size: 20px;
+}
+
 
 /* Hero section */
 .hero {

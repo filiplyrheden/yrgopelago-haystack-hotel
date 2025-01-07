@@ -27,6 +27,20 @@ $featurePrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Sauna' => 2, 'Minibar
     <header>
         <div class="header-content">
             <a href="index.php" class="logo">Haystack Hotel</a>
+
+            <div class="star-container">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <div class="star-text">
+                    <p>A five star hotel of the Lyrheden Group</p>
+                </div>
+            </div>
+
             <nav>
                 <ul>
                     <li><a href='app/view/admin.php'>Admin</a></li>
