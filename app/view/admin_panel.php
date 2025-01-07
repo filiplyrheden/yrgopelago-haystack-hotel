@@ -158,6 +158,9 @@ try {
 
             <button type="submit">Save Changes</button>
         </form>
+
+        <a href="/../../index.php">Return to booking page</a>
+
     </div>
 </body>
 
