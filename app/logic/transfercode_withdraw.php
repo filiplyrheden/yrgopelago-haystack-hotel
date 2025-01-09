@@ -12,7 +12,7 @@ $client = new Client(); // Create a Guzzle client
 $url = 'https://www.yrgopelago.se/centralbank/withdraw'; // API endpoint
 
 try {
-    // Send a POST request
+    // Send a POST request to withdraw funds
     $response = $client->post($url, [
         'headers' => [
             'Content-Type' => 'application/x-www-form-urlencoded',

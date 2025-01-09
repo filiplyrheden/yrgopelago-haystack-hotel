@@ -12,7 +12,7 @@ $hotel = "Haystack Hotel";
 // Fetch current star rating from database
 $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")->fetchColumn() ?: 5;
 
-// Functions to determine costs based on room type and features
+// Functions to determine costs based on room type
 function getRoomCost($roomType)
 {
     switch ($roomType) {
@@ -27,6 +27,7 @@ function getRoomCost($roomType)
     }
 }
 
+// Function to determine cost of selected features
 function getFeatureCost($features)
 {
     $costMap = [

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+// Check if a room is available for booking
 function isRoomAvailable(string $room_type, string $arrival_date, string $departure_date, PDO $pdo): bool
 {
     $query = "

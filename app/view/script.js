@@ -103,6 +103,7 @@ fetch(`${basePath}/app/logic/luxury_calendar.php`)
         .catch(error => console.error('Error fetching booked dates:', error));
 });
 
+// Function to calculate total cost
 function calculateTotalCost() {
     document.addEventListener('DOMContentLoaded', (event) => {
         const arrivalDateInput = document.getElementById('arrival_date');

@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return $result['price'];
         } catch (Exception $e) {
             error_log("Error fetching feature price: " . $e->getMessage());
-            return 0; // Or handle the error differently as needed
+            return 0; // Default to 0 if feature not found
         }
     }
 

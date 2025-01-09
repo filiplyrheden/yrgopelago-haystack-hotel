@@ -7,6 +7,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
+// Validate transfer code with total cost
 function isTransferCodeValid(string $transferCode, float $totalCost): bool
 {
     $client = new Client(); // Create a Guzzle client

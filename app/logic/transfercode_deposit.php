@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use InvalidArgumentException;
 
+// Deposit funds using transfer code
 function depositFunds(string $transferCode, string $hotelManager): array
 {
     $client = new Client();
