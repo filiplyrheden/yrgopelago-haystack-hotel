@@ -66,11 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "stars" => $stars,
         "additional_info" => [
             "greeting" => "Thank you for choosing $hotel",
-            "imageUrl" => ""
+            "imageUrl" => "https://giphy.com/gifs/welcome-austin-powers-dr-evil-l0MYC0LajbaPoEADu"
         ]
     ];
-
-    // Output JSON
-    // header('Content-Type: application/json');
-    // echo json_encode($response, JSON_PRETTY_PRINT);
 }
