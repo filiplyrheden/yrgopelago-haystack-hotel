@@ -40,9 +40,10 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
             <div class="star-text">
                 <p>A hotel of the Lyrheden Group</p>
             </div>
-            <div class="header-admin">
-                <a href='app/view/admin.php'>Hotel manager account</a>
-            </div>
+        </div>
+        <div class="header-admin">
+            <a href='app/view/admin.php'>Hotel manager account</a>
+        </div>
     </header>
 
     <section class="hero">
