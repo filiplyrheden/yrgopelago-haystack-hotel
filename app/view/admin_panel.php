@@ -186,9 +186,16 @@ $stmt->execute(['star_rating' => $starRating]);
             <button type="submit">Save Changes</button>
         </form>
 
-        <a href="/../../index.php">Return to booking page</a>
+        <div class="danger-zone">
+            <h2>Danger Zone</h2>
+            <p>Clicking the button below will delete all bookings and reset the database to its initial state.</p>
+            <form method="POST" action="/app/logic/reset_database.php">
+                <button type="submit" name="reset" value="true">Reset Database</button>
+            </form>
 
-    </div>
+            <a href="/../../index.php">Return to booking page</a>
+
+        </div>
 </body>
 
 </html>

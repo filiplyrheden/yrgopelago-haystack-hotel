@@ -19,3 +19,15 @@
 .error {
     color: red;
 }
+
+.danger-zone h2 {
+    color: red;
+}
+
+.danger-zone button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
