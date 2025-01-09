@@ -92,6 +92,7 @@ header {
     position: relative;
 }
 
+/* Added overlay to hero section */
 .hero::before {
     content: '';
     position: absolute;
