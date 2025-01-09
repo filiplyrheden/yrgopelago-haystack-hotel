@@ -147,33 +147,6 @@ header {
     padding: 1.5rem;
 }
 
-/*Special offer*/
-.special-offer {
-    background-color: #fff4e6;
-    border: 2px solid #ff9933;
-    border-radius: 8px;
-    padding: 15px 20px;
-    max-width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin: 0 auto;
-}
-
-.special-offer h6 {
-    color: #ff6600;
-    margin: 0 0 8px 0;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.special-offer p {
-    color: #333;
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.4;
-}
-
 /* Booking form styles */
 form {
     max-width: 800px;
@@ -217,41 +190,57 @@ button[type="submit"]:hover {
     background-color: #3d2317;
 }
 
+.checkout {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+/*Special offer*/
+.special-offer {
+    background-color: #fff4e6;
+    border: 2px solid #ff9933;
+    border-radius: 8px;
+    padding: 15px 20px;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.special-offer h6 {
+    color: #ff6600;
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.special-offer p {
+    color: #333;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
 /* Cost display */
 .cost-display {
     background: #f8f4eb;
     padding: 1rem;
     border-radius: 5px;
-    margin: 1rem 0;
+    width: 60%;
+    height: 100px;
 }
 
 #total_cost {
     font-size: 1.2rem;
-    font-weight: bold;
     color: #2c1810;
 }
 
 #discount_text {
     color: #667b68;
     margin-top: 0.5rem;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .room-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-}        
+}     
         
 /* Styles for the calendar */
 .calendar-headings {
