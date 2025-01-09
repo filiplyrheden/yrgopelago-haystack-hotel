@@ -101,6 +101,11 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
 
     <h2>Hotel Booking</h2>
     <form method="POST" action="/app/logic/database.php">
+        <div class="special-offer">
+            <h6>Limited offer:</h6>
+            <p>Book three or more nights at our hotel and enjoy an exclusive 30% discount on your entire stay.</p>
+        </div>
+
         <label for="arrival_date">Arrival Date:</label>
         <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br><br>
 
