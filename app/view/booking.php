@@ -137,7 +137,7 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
 
             <div class="special-offer">
                 <h6>Limited offer:</h6>
-                <p>Book three or more nights at our hotel and enjoy an exclusive 30% discount on your entire stay.</p>
+                <p>Book three or more nights and get an exclusive 30% discount on your entire stay.</p>
             </div>
 
         </div>
