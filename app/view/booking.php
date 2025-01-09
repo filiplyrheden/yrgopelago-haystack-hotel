@@ -109,9 +109,9 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
 
         <label for="room_type">Room Type:</label>
         <select id="room_type" name="room_type" required>
-            <option value="Budget" data-cost="<?= $roomPrices['Budget'] ?>">Budget (Cost: <?= $roomPrices['Budget'] ?>)</option>
-            <option value="Standard" data-cost="<?= $roomPrices['Standard'] ?>">Standard (Cost: <?= $roomPrices['Standard'] ?>)</option>
-            <option value="Luxury" data-cost="<?= $roomPrices['Luxury'] ?>">Luxury (Cost: <?= $roomPrices['Luxury'] ?>)</option>
+            <option value="Budget Bale" data-cost="<?= $roomPrices['Budget'] ?>">Budget Bale (Cost: <?= $roomPrices['Budget'] ?>)</option>
+            <option value="Comfort Stack" data-cost="<?= $roomPrices['Standard'] ?>">Comfort Stack (Cost: <?= $roomPrices['Standard'] ?>)</option>
+            <option value="Luxury Loft" data-cost="<?= $roomPrices['Luxury'] ?>">Luxury Loft (Cost: <?= $roomPrices['Luxury'] ?>)</option>
         </select><br><br>
 
         <h3>Features:</h3>
