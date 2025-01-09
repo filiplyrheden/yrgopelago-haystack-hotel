@@ -16,7 +16,7 @@ WHERE
         arrival_date BETWEEN '2025-01-01' AND '2025-01-31'
         OR departure_date BETWEEN '2025-01-01' AND '2025-01-31'
     )
-    AND rooms.room_type = 'Luxury';");
+    AND rooms.room_type = 'Luxury Loft';");
 
 $luxuryBookedDates = [];
 while ($row = $luxuryResult->fetch(PDO::FETCH_ASSOC)) {
