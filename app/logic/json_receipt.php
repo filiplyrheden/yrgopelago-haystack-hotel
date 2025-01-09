@@ -10,15 +10,15 @@ $hotel = "Haystack Hotel";
 // Fetch current star rating from database
 $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")->fetchColumn() ?: 5;
 
-// Function to determine costs based on room type and features
+// Functions to determine costs based on room type and features
 function getRoomCost($roomType)
 {
     switch ($roomType) {
-        case "Budget":
+        case "Budget Bale":
             return 1;
-        case "Standard":
+        case "Comfort Stack":
             return 2;
-        case "Luxury":
+        case "Luxury Loft":
             return 4;
         default:
             return 0;
@@ -28,7 +28,7 @@ function getRoomCost($roomType)
 function getFeatureCost($features)
 {
     $costMap = [
-        "Sauna" => 2,
+        "Sauna" => 3,
         "Minibar" => 1,
         "Yatzy" => 1
     ];
