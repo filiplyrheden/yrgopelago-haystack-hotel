@@ -6,7 +6,7 @@ $db = new PDO($database);
 // Fetch current prices and star rating
 $stmt = $db->prepare("SELECT * FROM room_prices");
 $stmt->execute();
-$roomPrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Budget' => 1, 'Standard' => 2, 'Luxury' => 4];
+$roomPrices = $stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: ['Budget Bale' => 1, 'Comfort Stack' => 2, 'Luxury Loft' => 4];
 
 $stmt = $db->prepare("SELECT * FROM feature_prices");
 $stmt->execute();

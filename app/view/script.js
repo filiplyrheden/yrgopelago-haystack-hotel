@@ -117,7 +117,7 @@ function calculateTotalCost() {
             
             if (arrivalDate && departureDate) {
                 const timeDifference = departureDate - arrivalDate;
-                const daysDifference = timeDifference / (1000 * 3600 * 24);
+                const daysDifference = timeDifference / (1000 * 3600 * 24) +1;
                 
                 // Get room cost
                 const roomCost = parseInt(roomType.options[roomType.selectedIndex].getAttribute('data-cost'));
@@ -130,7 +130,7 @@ function calculateTotalCost() {
                 });
 
                 // Apply discount for three or more days
-                if (daysDifference >= 3) {
+                if (daysDifference >= 4) {
                     totalCost *= 0.7; // 30% discount
                     discountText.textContent = "Enjoy 30% discount!";
                 }

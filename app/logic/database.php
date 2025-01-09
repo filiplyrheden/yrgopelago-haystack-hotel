@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/functions.php';
+require __DIR__ . '/room_availability.php';
 require __DIR__ . '/transfercode_validation.php';
 require __DIR__ . '/transfercode_deposit.php';
 require __DIR__ . '/../../vendor/autoload.php';
@@ -73,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $departureDateObj = new DateTime($departureDate);
         $days = $departureDateObj->diff($arrivalDateObj)->days;
 
-        $totalCost = ($roomCost * $days) + $featureCost;
+        $totalCost = ($roomCost * ($days + 1)) + $featureCost;
 
         // Apply 30% discount for bookings of three days or more
-        if ($days >= 3) {
+        if ($days >= 2) {
             $totalCost *= 0.7;
         }
 

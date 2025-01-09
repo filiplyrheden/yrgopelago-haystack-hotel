@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $transfer_code = $_POST['transfer_code'];
 
     // Calculate the total cost
-    $days = max(1, (strtotime($departure_date) - strtotime($arrival_date)) / 86400);
+    $days = max(1, (strtotime($departure_date) - strtotime($arrival_date)) / 86400) + 1;
     $room_cost = getRoomCost($room_type) * $days;
     $feature_cost = getFeatureCost($features);
     $total_cost = $room_cost + $feature_cost;
