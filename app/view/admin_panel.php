@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         )");
         $stmt->execute();
 
-        $roomTypes = ['Budget', 'Standard', 'Luxury'];
+        $roomTypes = ['Budget Bale', 'Comfort Stack', 'Luxury Loft'];
         foreach ($roomTypes as $type) {
             $price = $_POST["price_$type"] ?? 0;
             $stmt = $db->prepare("INSERT OR REPLACE INTO room_prices (room_type, price) VALUES (:type, :price)");
@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Fetch current values
 try {
     $roomPrices = $db->query("SELECT * FROM room_prices")->fetchAll(PDO::FETCH_KEY_PAIR) ?: [
-        'Budget' => 1,
-        'Standard' => 2,
-        'Luxury' => 4
+        'Budge Bale' => 1,
+        'Comfort Stack' => 2,
+        'Luxury Loft' => 4
     ];
 
     $featurePrices = $db->query("SELECT * FROM feature_prices")->fetchAll(PDO::FETCH_KEY_PAIR) ?: [
@@ -79,7 +79,7 @@ try {
     ];
 } catch (PDOException $e) {
     // Use default values if tables don't exist yet
-    $roomPrices = ['Budget' => 1, 'Standard' => 2, 'Luxury' => 4];
+    $roomPrices = ['Budget Bale' => 1, 'Comfort Stack' => 2, 'Luxury Loft' => 4];
     $featurePrices = ['Sauna' => 2, 'Minibar' => 1, 'Yatzy' => 1];
     $discountSettings = ['min_days' => 3, 'discount_percentage' => 30];
 }
