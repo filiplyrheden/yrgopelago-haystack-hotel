@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+// Connect to the database
 $database = 'sqlite:' . __DIR__ . '/../../app/database/haystack.db';
 $db = new PDO($database);
 

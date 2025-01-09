@@ -193,7 +193,7 @@ $stmt->execute(['star_rating' => $starRating]);
                 <button type="submit" name="reset" value="true">Reset Database</button>
             </form>
 
-            <a href="/haystack-hotel">Return to booking page</a>
+            <a href="https://www.filiplyrheden.se/haystack-hotel">Return to booking page</a>
 
         </div>
 </body>
