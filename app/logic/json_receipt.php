@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "stars" => $starRating,
         "additional_info" => [
             "greeting" => "Thank you for choosing $hotel",
-            "imageUrl" => "https://giphy.com/gifs/welcome-austin-powers-dr-evil-l0MYC0LajbaPoEADu"
+            "imageUrl" => "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHZ3aHk2N3Z4dWl6Z3dydmo2N3VoN2s4OXhqcmdnNTEzZmgxanlwcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYC0LajbaPoEADu/giphy.gif"
         ]
     ];
 }
