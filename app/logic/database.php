@@ -82,12 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check if the transfer code is valid
         if (isTransferCodeValid($transferCode, $totalCost)) {
-
             if (isRoomAvailable($roomType, $arrivalDate, $departureDate, $db)) {
                 try {
                     // Insert booking
                     $stmt = $db->prepare("INSERT INTO bookings (arrival_date, departure_date, transfer_code, total_cost) 
-          VALUES (:arrival_date, :departure_date, :transfer_code, :total_cost)");
+                        VALUES (:arrival_date, :departure_date, :transfer_code, :total_cost)");
                     $stmt->bindParam(':arrival_date', $arrivalDate);
                     $stmt->bindParam(':departure_date', $departureDate);
                     $stmt->bindParam(':transfer_code', $transferCode);
@@ -97,34 +96,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     // Insert room
                     $stmt = $db->prepare("INSERT INTO rooms (room_type, room_cost) 
-          VALUES (:room_type, :room_cost)");
+                        VALUES (:room_type, :room_cost)");
                     $stmt->bindParam(':room_type', $roomType);
                     $stmt->bindParam(':room_cost', $roomCost);
                     $stmt->execute();
                     $roomId = $db->lastInsertId();
 
-                    // Insert features and junction table entries
-                    foreach ($features as $feature) {
-                        // Insert feature
-                        $featureStmt = $db->prepare("INSERT INTO features (feature_name, feature_cost)
-            VALUES (:feature_name, :feature_cost)");
-                        $featureStmt->bindValue(':feature_name', $feature);
-                        $featureStmt->bindValue(':feature_cost', $featureCosts[$feature]);
-                        $featureStmt->execute();
-                        $featureId = $db->lastInsertId();
+                    // Verify booking and room IDs exist before junction table insert
+                    if (!$bookingId || !$roomId) {
+                        throw new PDOException("Failed to get valid IDs for junction table insert");
+                    }
 
-                        // Verify all IDs exist before junction table insert
-                        if (!$bookingId || !$roomId || !$featureId) {
-                            throw new PDOException("Failed to get valid IDs for junction table insert");
+                    // Insert the initial booking-room relationship without features
+                    $junctionStmt = $db->prepare("INSERT INTO booking_room_feature (booking_id, room_id, feature_id) 
+                        VALUES (:booking_id, :room_id, 0)"); // Using 0 as a default feature_id
+                    $junctionStmt->bindValue(':booking_id', $bookingId);
+                    $junctionStmt->bindValue(':room_id', $roomId);
+                    $junctionStmt->execute();
+
+                    // If features were selected, add them as well
+                    if (!empty($features)) {
+                        foreach ($features as $feature) {
+                            // Insert feature
+                            $featureStmt = $db->prepare("INSERT INTO features (feature_name, feature_cost)
+                                VALUES (:feature_name, :feature_cost)");
+                            $featureStmt->bindValue(':feature_name', $feature);
+                            $featureStmt->bindValue(':feature_cost', $featureCosts[$feature]);
+                            $featureStmt->execute();
+                            $featureId = $db->lastInsertId();
+
+                            if (!$featureId) {
+                                throw new PDOException("Failed to get valid feature ID");
+                            }
+
+                            // Insert additional feature relationships into junction table
+                            $junctionStmt = $db->prepare("INSERT INTO booking_room_feature (booking_id, room_id, feature_id)
+                                VALUES (:booking_id, :room_id, :feature_id)");
+                            $junctionStmt->bindValue(':booking_id', $bookingId);
+                            $junctionStmt->bindValue(':room_id', $roomId);
+                            $junctionStmt->bindValue(':feature_id', $featureId);
+                            $junctionStmt->execute();
                         }
-
-                        // Insert into junction table
-                        $junctionStmt = $db->prepare("INSERT INTO booking_room_feature (booking_id, room_id, feature_id)
-            VALUES (:booking_id, :room_id, :feature_id)");
-                        $junctionStmt->bindValue(':booking_id', $bookingId);
-                        $junctionStmt->bindValue(':room_id', $roomId);
-                        $junctionStmt->bindValue(':feature_id', $featureId);
-                        $junctionStmt->execute();
                     }
 
                     //Deposits funds from transfercode into hotel managers account.
