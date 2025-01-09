@@ -189,7 +189,7 @@ $stmt->execute(['star_rating' => $starRating]);
         <div class="danger-zone">
             <h2>Danger Zone</h2>
             <p>Clicking the button below will delete all bookings and reset the database to its initial state.</p>
-            <form method="POST" action="/app/logic/reset_database.php">
+            <form method="POST" action="/haystack-hotel/app/logic/reset_database.php">
                 <button type="submit" name="reset" value="true">Reset Database</button>
             </form>
 
