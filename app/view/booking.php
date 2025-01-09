@@ -100,7 +100,7 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
     </section>
 
     <h2>Hotel Booking</h2>
-    <form method="POST" action="/app/logic/database.php">
+    <form method="POST" action="/haystack-hotel/app/logic/database.php">
 
         <label for="arrival_date">Arrival Date:</label>
         <input type="date" id="arrival_date" name="arrival_date" required min="2025-01-01" max="2025-01-31"><br><br>
