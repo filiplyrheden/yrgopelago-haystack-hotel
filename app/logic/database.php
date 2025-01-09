@@ -58,15 +58,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transferCode = $_POST['transfer_code'] ?? '';
     $features = $_POST['features'] ?? [];
 
-    $roomCosts = ['Budget Bale' => 1, 'Comfort Stack' => 2, 'Luxury Loft' => 4];
-    $featureCosts = ['Sauna' => 3, 'Minibar' => 1, 'Yatzy' => 1];
+    // Get room costs from database
+    function getRoomPrice($roomType, $db)
+    {
+        $stmt = $db->prepare("SELECT price FROM room_prices WHERE room_type = :room_type");
+        $stmt->bindParam(':room_type', $roomType);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['price'] : 0;
+    }
+
+    // Get feature costs from database
+    function getFeaturePrice($featureName, $db)
+    {
+        try {
+            $stmt = $db->prepare("SELECT price FROM feature_prices WHERE feature_name = :feature_name");
+            $stmt->bindParam(':feature_name', $featureName);
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                throw new Exception("Feature type not found in database");
+            }
+            return $result['price'];
+        } catch (Exception $e) {
+            error_log("Error fetching feature price: " . $e->getMessage());
+            return 0; // Or handle the error differently as needed
+        }
+    }
 
     if ($arrivalDate && $departureDate && $roomType && $transferCode) {
         // Calculate total cost
-        $roomCost = $roomCosts[$roomType] ?? 0;
+        $roomCost = getRoomPrice($roomType, $db);
         $featureCost = 0;
+
         foreach ($features as $feature) {
-            $featureCost += $featureCosts[$feature] ?? 0;
+            $featureCost += getFeaturePrice($feature, $db);
         }
 
         $arrivalDateObj = new DateTime($arrivalDate);
@@ -118,10 +146,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (!empty($features)) {
                         foreach ($features as $feature) {
                             // Insert feature
+                            $featurePrice = getFeaturePrice($feature, $db);
                             $featureStmt = $db->prepare("INSERT INTO features (feature_name, feature_cost)
                                 VALUES (:feature_name, :feature_cost)");
                             $featureStmt->bindValue(':feature_name', $feature);
-                            $featureStmt->bindValue(':feature_cost', $featureCosts[$feature]);
+                            $featureStmt->bindValue(':feature_cost', $featurePrice);
                             $featureStmt->execute();
                             $featureId = $db->lastInsertId();
 
