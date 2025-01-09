@@ -135,6 +135,9 @@ function calculateTotalCost() {
                     totalCost *= 0.7; // 30% discount
                     discountText.textContent = "Enjoy 30% discount!";
                 }
+
+                 // Round up to the nearest whole number
+                 totalCost = Math.ceil(totalCost);
                 
                 // Update display
                 if (totalCostElement) {
