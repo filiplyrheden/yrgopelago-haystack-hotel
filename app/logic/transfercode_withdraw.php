@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../../vendor/autoload.php'; // Include Composer autoloader
 
 use GuzzleHttp\Client;
@@ -22,8 +24,11 @@ try {
         ],
     ]);
 
+    // Convert StreamInterface to string before decoding
+    $responseBody = $response->getBody()->getContents();
+
     // Decode the JSON response
-    $responseData = json_decode($response->getBody(), true);
+    $responseData = json_decode($responseBody, true);
 
     // Output the response
     echo "Response from API:\n";
@@ -33,7 +38,7 @@ try {
     echo "Error occurred:\n";
 
     if ($e->hasResponse()) {
-        echo $e->getResponse()->getBody();
+        echo $e->getResponse()->getBody()->getContents();
     } else {
         echo $e->getMessage();
     }

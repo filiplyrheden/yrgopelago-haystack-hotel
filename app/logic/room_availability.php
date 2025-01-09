@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 function isRoomAvailable(string $room_type, string $arrival_date, string $departure_date, PDO $pdo): bool
 {
     $query = "

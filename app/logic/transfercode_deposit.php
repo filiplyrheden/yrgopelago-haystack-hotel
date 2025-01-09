@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/dotenv.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use InvalidArgumentException;
 
 function depositFunds(string $transferCode, string $hotelManager): array
 {
@@ -22,8 +25,11 @@ function depositFunds(string $transferCode, string $hotelManager): array
             ],
         ]);
 
+        // Convert StreamInterface to string before decoding
+        $responseBody = $response->getBody()->getContents();
+
         // Decode JSON response
-        return json_decode($response->getBody(), true);
+        return json_decode($responseBody, true);
     } catch (RequestException $e) {
         // Handle request errors
         $errorMessage = $e->hasResponse()

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../../vendor/autoload.php';
 
 use GuzzleHttp\Client;
@@ -22,8 +24,11 @@ function isTransferCodeValid(string $transferCode, float $totalCost): bool
             ],
         ]);
 
+        // Convert StreamInterface to string before decoding
+        $responseBody = $response->getBody()->getContents();
+
         // Decode the JSON response
-        $responseData = json_decode($response->getBody(), true);
+        $responseData = json_decode($responseBody, true);
 
         // Check if the response status is 'success'
         return isset($responseData['status']) && $responseData['status'] === 'success';
@@ -31,7 +36,7 @@ function isTransferCodeValid(string $transferCode, float $totalCost): bool
         // Log or handle request errors as needed
         echo "Error occurred:\n";
         if ($e->hasResponse()) {
-            echo $e->getResponse()->getBody();
+            echo $e->getResponse()->getBody()->getContents();
         } else {
             echo $e->getMessage();
         }

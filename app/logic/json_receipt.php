@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $database = 'sqlite:' . __DIR__ . '/../../app/database/haystack.db';
 $db = new PDO($database);
 

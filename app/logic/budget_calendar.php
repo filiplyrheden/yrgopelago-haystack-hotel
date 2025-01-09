@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/database.php';
 
 // Query to get booked dates in January for the Budget room type
