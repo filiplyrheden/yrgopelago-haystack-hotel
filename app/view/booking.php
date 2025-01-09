@@ -42,7 +42,7 @@ $starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")-
             </div>
         </div>
         <div class="header-admin">
-            <a href='app/view/admin.php'>Hotel manager account</a>
+            <a href='/haystack-hotel/app/view/admin.php'>Hotel manager account</a>
         </div>
     </header>
 

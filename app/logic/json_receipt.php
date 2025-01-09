@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "stars" => $starRating,
         "additional_info" => [
             "greeting" => "Thank you for choosing $hotel",
-            "imageUrl" => "https://tinyurl.com/haystack-welcome"
+            "imageUrl" => "https://giphy.com/gifs/welcome-austin-powers-dr-evil-l0MYC0LajbaPoEADu"
         ]
     ];
 }
