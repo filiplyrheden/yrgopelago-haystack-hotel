@@ -3,7 +3,7 @@
 // Preset variables
 $island = "Pitchfork Isle";
 $hotel = "Haystack Hotel";
-$stars = 5;
+$stars = 4;
 
 // Function to determine costs based on room type and features
 function getRoomCost($roomType)
