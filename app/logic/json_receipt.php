@@ -1,9 +1,14 @@
 <?php
 
+$database = 'sqlite:' . __DIR__ . '/../../app/database/haystack.db';
+$db = new PDO($database);
+
 // Preset variables
 $island = "Pitchfork Isle";
 $hotel = "Haystack Hotel";
-$stars = 4;
+
+// Fetch current star rating from database
+$starRating = $db->query("SELECT star_rating FROM hotel_settings WHERE id = 1")->fetchColumn() ?: 5;
 
 // Function to determine costs based on room type and features
 function getRoomCost($roomType)
@@ -63,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "room_type" => $room_type,
         "features" => $features,
         "total_cost" => $total_cost,
-        "stars" => $stars,
+        "stars" => $starRating,
         "additional_info" => [
             "greeting" => "Thank you for choosing $hotel",
             "imageUrl" => "https://giphy.com/gifs/welcome-austin-powers-dr-evil-l0MYC0LajbaPoEADu"
