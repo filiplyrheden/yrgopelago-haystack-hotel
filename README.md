@@ -11,3 +11,24 @@ The project features tacky AI-generated images, but also a nice admin page, whic
 - Backend: PHP
 - Frontend: HTML, CSS, JavaScript
 - Database: SQLite
+
+### Code review
+
+First of all, I think it's a really nice looking site and from what I can tell it seems to work as intended. I also think that the code looks nice and I had to dig around to find a few minor things I could comment:
+
+README.md - I'm missing information and download instructions for the packages that you've used. I see that you have the phpdotenv and guzzle etc - maybe it would be suitable to mention them in the readme-file?
+
+booking.php, line 128 - the form input for transfercode is missing a label and uses an H4 instead.
+
+booking.php, line 51-52 and style.css line 23 - The contrast between the text and the background is a bit on the low side.
+
+booking.php, line 138-141 and style.css, line 216-226 - The contrast between the text and the background is a bit on the low side.
+
+booking.php - I see that you have used h1-h6 in your file but there's no h5.
+
+style.css - Maybe using variables for your colors would simplify swapping them out?
+
+script.js - In the javascript there's still a few console.logs left. I suggest removing them or commenting them out.
+
+// Josefin
+
