@@ -12,6 +12,29 @@ The project features tacky AI-generated images, but also a nice admin page, whic
 - Frontend: HTML, CSS, JavaScript
 - Database: SQLite
 
+
+## Required Packages
+
+- [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) ^5.6 - For loading environment variables
+- [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) ^7.0 - HTTP client for API requests
+
+## Installation
+
+1. Clone this repository
+```bash
+git clone https://github.com/filiplyrheden/yrgopelago-haystack-hotel.git
+```
+
+2. Install dependencies using Composer
+```bash
+composer install
+```
+
+3. Create a `.env` file in the root directory and add your environment variables
+```bash
+cp .env.example .env
+```
+
 ### Code review
 
 First of all, I think it's a really nice looking site and from what I can tell it seems to work as intended. I also think that the code looks nice and I had to dig around to find a few minor things I could comment:
