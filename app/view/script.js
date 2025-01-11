@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`${basePath}/app/logic/budget_calendar.php`)
         .then(response => response.json())
         .then(bookedDates => {
-            // Debugging: Log the booked dates and its type
-            console.log('Booked Dates:', bookedDates);
-            console.log('Type of Booked Dates:', typeof bookedDates);
-            console.log('Is Array:', Array.isArray(bookedDates));
 
             // Ensure bookedDates is an array
             if (!Array.isArray(bookedDates)) {
@@ -42,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`${basePath}/app/logic/standard_calendar.php`)
     .then(response => response.json())
     .then(bookedDates => {
-        // Debugging: Log the booked dates and its type
-        console.log('Booked Dates:', bookedDates);
-        console.log('Type of Booked Dates:', typeof bookedDates);
-        console.log('Is Array:', Array.isArray(bookedDates));
 
         // Ensure bookedDates is an array
         if (!Array.isArray(bookedDates)) {
@@ -74,10 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
 fetch(`${basePath}/app/logic/luxury_calendar.php`)
         .then(response => response.json())
         .then(bookedDates => {
-            // Debugging: Log the booked dates and its type
-            console.log('Booked Dates:', bookedDates);
-            console.log('Type of Booked Dates:', typeof bookedDates);
-            console.log('Is Array:', Array.isArray(bookedDates));
 
             // Ensure bookedDates is an array
             if (!Array.isArray(bookedDates)) {
