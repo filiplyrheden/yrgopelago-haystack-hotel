@@ -313,3 +313,97 @@ margin-bottom: -40px;
 .available {
     background-color: #d4edda;
 }
+
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-admin {
+        margin: 1rem 0 0 0;
+    }
+
+    .room-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .checkout {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .cost-display {
+        width: 80%;
+    }
+
+    .calendars {
+        flex-direction: column;
+    }
+
+    .calendar-headings {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 40px;
+    }
+
+    .hero {
+        height: 40vh;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .room-cards {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .stars {
+        font-size: 18px;
+    }
+
+    .star-text {
+        font-size: 14px;
+    }
+
+    .calendar div {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .special-offer {
+        width: 100%;
+    }
+}
